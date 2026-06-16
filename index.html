@@ -9,7 +9,7 @@
         /* CSS Reset & Basic Setup */
         html,
         body {
-            height: 100%;
+            min-height: 100%;
             margin: 0;
             padding: 0;
             background-color: #f8f9fa;
@@ -20,6 +20,13 @@
 
         /* Centering the content using Flexbox */
         body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content-wrap {
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -49,6 +56,38 @@
             line-height: 1.6;
         }
 
+        .site-footer {
+            width: 100%;
+            border-top: 1px solid rgba(26, 26, 26, 0.12);
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(8px);
+        }
+
+        .footer-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            color: #5f6368;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .footer-brand {
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: 0.12em;
+        }
+
+        .footer-meta {
+            font-weight: 500;
+            text-align: right;
+        }
+
         /* Responsive adjustments for smaller screens (phones) */
         @media (max-width: 600px) {
             h1 {
@@ -58,17 +97,37 @@
             p {
                 font-size: 1.1rem;
             }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .footer-meta {
+                text-align: left;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="message-container">
-        <h1 id="headline">Something great is coming.</h1>
-        <p id="description">We are working hard behind the scenes to bring you a brand new experience. Check back soon.
-        </p>
-    </div>
+    <main class="content-wrap">
+        <div class="message-container">
+            <h1 id="headline">Something great is coming.</h1>
+            <p id="description">We are working hard behind the scenes to bring you a brand new experience. Check back
+                soon.
+            </p>
+        </div>
+    </main>
+
+    <footer class="site-footer" aria-label="Company footer">
+        <div class="footer-inner">
+            <div class="footer-brand">CarVantage Znojmo</div>
+            <div class="footer-meta" id="footer-meta">Automotive solutions in development</div>
+        </div>
+    </footer>
 
     <script>
         (function () {
@@ -79,18 +138,21 @@
                 lang: 'cs',
                 title: 'Brzy bude hotovo',
                 headline: 'Připravujeme něco skvělého.',
-                description: 'Usilovně pracujeme v zákulisí, abychom vám přinesli úplně nový zážitek. Brzy se vraťte.'
+                description: 'Usilovně pracujeme v zákulisí, abychom vám přinesli úplně nový zážitek. Brzy se vraťte.',
+                footerMeta: 'Automobilové služby ve vývoji'
             } : {
                 lang: 'en',
                 title: 'Coming Soon',
                 headline: 'Something great is coming.',
-                description: 'We are working hard behind the scenes to bring you a brand new experience. Check back soon.'
+                description: 'We are working hard behind the scenes to bring you a brand new experience. Check back soon.',
+                footerMeta: 'Automotive solutions in development'
             };
 
             document.documentElement.lang = copy.lang;
             document.title = copy.title;
             document.getElementById('headline').textContent = copy.headline;
             document.getElementById('description').textContent = copy.description;
+            document.getElementById('footer-meta').textContent = copy.footerMeta;
         }());
     </script>
 
